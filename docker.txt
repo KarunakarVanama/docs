@@ -1,0 +1,84 @@
+docker save image -o tarfile
+docker load -l tarfile
+
+docker run -it imgname 
+docker run -d image name
+docker rm containerid -f
+docker stop containerid
+docker restart
+docker kill
+docker exec -it
+docker pause
+docker unpause
+
+
+Mysql in docker:
+lab 6.1
+====================
+mkdir lab6.1
+cd lab6.1
+git clone https://github.com/SimplilearnDevOpsOfficial/DockerwithMySQL.git
+
+cd 
+sudo chmod 777 *
+createing a docker volume:
+------------------------------------------------
+
+
+docker compose:
+
+for managing multiple apps
+
+
+cd lab6.5
+mkdir bin
+sudo curl -L https://github.com/docker/compose/releases/downloads/1.9.0/docker-compose-S(uname 
+-$(uname -m)" -o bin/docker-compose
+sudo chmod u+x bin/docker-compose
+touch Dockerfile
+vi Dockerfile
+
+dokcer build -t centos-sshd .
+docker run -d --name sshd -p 2222:22 centos-sshd
+
+`/bin/docker-compose up -d
+
+
+docker pull registry:2
+docker run -d -p 5000:5000 --restart=always --name=registry registry:2
+docker pull ubuntu
+dokcer tag ubuntu localhost:5000/ubuntu
+docker push localhost:5000/ubuntu
+docker rmi ubuntu
+docker images
+docker pull localhost:5000/ubuntu
+docker run -it --rm localhost:5000/ubuntu /bin/bash
+exit
+
+
+
+Docker Networking
+----------------
+-------------
+Bridge
+host
+Container
+none
+
+
+lab6.4
+docker run -it --name centos centos /bin/bash
+yum install -y net-tools
+ifconfig
+cat /etc/hosts
+hostname
+
+new terminal:
+========
+docker network create exnet
+docker network inspect exnet
+docker network connect xnet centos
+====
+terminal1:
+ifconfig
+cat /etc/hosts

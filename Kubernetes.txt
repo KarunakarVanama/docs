@@ -1,0 +1,56 @@
+sudo apt-get update
+sudo apt-get install apt-transport-https -y
+
+
+#installing docker
+sudo apt-get install docker-ie -y
+sudo apt-get install -y curl apt-transport-https-docker-io
+
+sudo systemctl start docker
+sudo systemctl enable dokcer
+
+
+#getting kubernetes
+sudo curl -s https://packages.cloud.google.com/apt/doc/api-key-gpg | apt-ket add -
+eccho deb http://apt.kubernetes.io/kubernetes-xenial.main > /etc/apt/sources.list. /kubernetes.list
+
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+
+sudo kubeadm init
+mkdir -p $HOME/.kube
+sudo cp -l /etc/kubernetes/admin.conf $HOME/.kube/config
+
+sudo chown $(id -u) :$(id -g) $HOME/.kube/Config
+
+sudo kubectl get node
+sudo kubectl config current-context
+sudo kubectl version
+sudo kubectl config view
+sudo kubectl get ns
+sudo kubectl create ns <namespace name>
+sudo kubectl delete ns <namespace name>
+
+sudo kubectl get pod --all-namespaces
+sudo kubectl desccribe pod < pod name> -n <namespace>
+
+
+sudo kubectl get service --all-namespaces
+sudo kubectl describe service <service name> -n <namespace>
+
+sudo kubectl get deployment --all-namespaces
+sudo kubectl describe deployment <deploymentservicename> -n <namespace>
+
+sudo kubectl api-resources
+sudo kubectl api-resources --namespaced=true
+
+
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flanner/bc79dd1505bBc8681ece4de4c8d86c5cd2643275/Documentation/kube-flannel.yml
+
+
+kubectl create ns simplilearn
+kubectl describe ns simplilearn
+kubectl delete ns simplilearn
+
+kubectl get pod --all-namespaces
