@@ -1,0 +1,58 @@
+import pandas as pd
+import numpy as np
+import scipy.stats as st
+from scipy.stats import ttest_1samp
+import sys
+sys.path.append('../')
+
+def solution():
+    df = pd.read_csv('res/iqdata.csv' , header = None, names = ['Iq'])
+    data = df.Iq.values
+    main_std = np.std(data)
+    main_mean = np.mean(data)
+    main_size = df.size
+    file_data = []
+    fh = open('res/testcaseiq.txt','r')
+    for line in fh:
+        file_data.append(line.strip())
+    fh.close()
+    j=1
+    for i in range(1,len(file_data),3):
+        filename = 'output/output'+str(j)+'.csv'
+        f=open(filename,'w')
+        f.write(str(round(main_mean,2))+'\n')
+        f.write(str(round(main_std,2))+'\n')
+        z1 = (int(file_data[i]) - main_mean)/main_std
+        z2 = (int(file_data[i+1]) - main_mean)/main_std
+        prob = round(st.norm.cdf(z2)*100,3) - round(st.norm.cdf(z1)*100,3)
+        print(prob)
+        f.write(str(prob)+'\n')
+        sample_data = pd.read_csv('res/'+file_data[i+2]+'.csv','r').values
+        tset, pval = ttest_1samp(sample_data, main_mean)
+        if(pval < 0.05):
+            f.write('Reject'+'\n')
+        else:
+            f.write('Accept'+ '\n')
+        f.close()
+        j=j+1
+        
+solution()
+        
+        
+
+  
+
+# Read values from testcase
+
+  
+
+
+      
+
+
+# Calculate percentage of people with IQ in given range
+
+       
+
+# C. Null hypothesis testing
+ 
